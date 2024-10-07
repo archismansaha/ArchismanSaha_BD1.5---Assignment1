@@ -4,14 +4,13 @@ const cors = require('cors');
 const app = express();
 
 
-app.use(cors({
-  origin: 'https://bd1-1.vercel.app'
-}));
+app.use(cors());
 const PORT = 3000;
 
 app.get('/cart-total', (req, res) => {
   const newItemPrice = parseFloat(req.query.newItemPrice);
   const cartTotal = parseFloat(req.query.cartTotal);
+  
 
   if (isNaN(newItemPrice) || isNaN(cartTotal)) {
     return res.status(400).send('Invalid input');
