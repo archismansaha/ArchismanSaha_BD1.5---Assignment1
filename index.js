@@ -5,7 +5,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(cors({
-  origin: '*', 
+  origin: [ "https://bd1-1.vercel.app/",
+    '*', 
+],
   methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'], 
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
