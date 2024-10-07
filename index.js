@@ -5,13 +5,10 @@ const app = express();
 const PORT = 3000;
 
 app.use(cors({
-  origin: [ "https://bd1-1.vercel.app/",
-    '*', 
-],
-  methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'], 
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: '*', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'] 
 }));
-
 app.get('/cart-total', (req, res) => {
   const newItemPrice = parseFloat(req.query.newItemPrice);
   const cartTotal = parseFloat(req.query.cartTotal);
