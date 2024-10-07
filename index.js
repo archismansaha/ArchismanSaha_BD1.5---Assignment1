@@ -2,7 +2,21 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-app.use(cors({ origin: '*' }));
+var whitelist = ['https://bd1-1.vercel.app/'];
+var corsOptions = {
+	origin: function (origin, callback) {
+		if (whitelist.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			callback(null, false);
+		}
+	},
+	methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+	optionsSuccessStatus: 200,
+	credentials: true, 
+	allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+};
+app.use(cors(corsOptions));
 const PORT = 3000;
 
 app.get('/cart-total', (req, res) => {
