@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
+app.use(cors({ origin: '*' }));
 const PORT = 3000;
 
-app.use(cors());
 app.get('/cart-total', (req, res) => {
   const newItemPrice = parseFloat(req.query.newItemPrice);
   const cartTotal = parseFloat(req.query.cartTotal);
