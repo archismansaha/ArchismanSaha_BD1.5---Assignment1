@@ -2,20 +2,24 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-var whitelist = ['https://bd1-1.vercel.app/'];
-var corsOptions = {
-	origin: function (origin, callback) {
-		if (whitelist.indexOf(origin) !== -1) {
-			callback(null, true);
-		} else {
-			callback(null, false);
-		}
-	},
-	methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
-	optionsSuccessStatus: 200,
-	credentials: true, 
-	allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+const whitelist = ['https://bd1-1.vercel.app'];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  credentials: true,
+  allowedHeaders: [
+    'Content-Type', 'Authorization', 'X-Requested-With',
+    'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept'
+  ],
+  optionsSuccessStatus: 200
 };
+
 app.use(cors(corsOptions));
 const PORT = 3000;
 
