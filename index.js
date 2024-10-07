@@ -19,7 +19,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions));
+app.use(cors({origin: 'https://bd1-1.vercel.app'}));
 const PORT = 3000;
 
 app.get('/cart-total', (req, res) => {
