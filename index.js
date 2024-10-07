@@ -11,6 +11,7 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
+  'Access-Control-Allow-Origin' : "https://bd1-1.vercel.app",
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: [
     'Content-Type', 'Authorization', 'X-Requested-With',
@@ -19,7 +20,7 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cors({origin: 'https://bd1-1.vercel.app'}));
+app.use(cors(corsOptions));
 const PORT = 3000;
 
 app.get('/cart-total', (req, res) => {
