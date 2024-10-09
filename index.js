@@ -4,7 +4,9 @@ const cors = require('cors');
 const app = express();
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://bd1-1.vercel.app'
+}));
 const PORT = 3000;
 
 app.get('/cart-total', (req, res) => {
